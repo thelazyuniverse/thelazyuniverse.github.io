@@ -1,0 +1,158 @@
+BaseURL = "https://thelazyuniverse.github.io/"
+Title = "The Lazy Universe"
+
+contentdir = "content"
+layoutdir = "layouts"
+publishdir = "public"
+
+# Remove files from destination not found in static directories
+cleandestinationdir = true
+
+enableEmoji = true
+
+LanguageCode = "en-us" # Used in RSS generation
+
+disableFastRender = true        # Hugo 0.30
+
+[module]
+  [[module.imports]]
+    path = "gitlab.com/kaushalmodi/hugo-theme-refined"
+  
+[markup]
+  [markup.highlight]
+    codeFences = true # default = true
+    noClasses = false # default = true
+    lineNumbersInTable = true
+
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true # This is *necessary* for ox-hugo to work well with Hugo 0.60.0+
+
+[Author]
+  name = "Rajesh Kommu"
+  email = "thelazyuniverse@yahoo.com"
+
+[Social]
+  github = "thelazyuniverse"
+
+[Permalinks]
+  # https://gohugo.io/content-management/urls/#permalink-configuration-values
+  # | :year        | the 4-digit year                           |
+  # | :month       | the 2-digit month                          |
+  # | :monthname   | the name of the month                      |
+  # | :day         | the 2-digit day                            |
+  # | :weekday     | the 1-digit day of the week (Sunday = 0)   |
+  # | :weekdayname | the name of the day of the week            |
+  # | :yearday     | the 1- to 3-digit day of the year          |
+  # | :section     | the content's section                      |
+  # | :sections    | the content's sections hierarchy           |
+  # | :title       | the content's title                        |
+  # | :slug        | the content's slug (or title, if no slug)  |
+  # | :filename    | the content's filename (without extension) |
+
+  # Below, we have:
+  #
+  #   foo = "bar"
+  #
+  # where 'foo' is the section name which we want to have the custom
+  # permalinks. If foo is 'posts', it will apply to content in "content/posts/"
+  # dir. The "bar" portion is how you want the links to look.
+  posts = "/posts/:filename/"
+  # post = "/:year/:month/:title/"
+  notes = "/notes/:filename/"
+
+[Taxonomy]
+  category = "categories"
+  tag = "tags"
+  posts = "posts"
+  notes = "notes"
+  
+# The "ATOM", "JF2Post" and "JF2Feed" are custom output formats defined in the
+# "refined" theme.
+[outputs]
+  home = ["HTML", "RSS", "ATOM", "JF2Feed"] # default = ["HTML", "RSS"]
+  section = ["HTML", "RSS", "ATOM", "JF2Feed"] # posts/atom.xml
+  taxonomy = ["HTML", "RSS", "ATOM", "JF2Feed"] # tags/foo/atom.xml
+  # Fri Mar 23 17:57:08 EDT 2018 - kmodi
+  # There's some issue on Hugo 0.38-DEV (older versions too)..  The "ATOM"
+  # output format is not getting generated for taxonomyTerm.
+  # taxonomyTerm = ["HTML", "RSS", "ATOM", "JF2Feed"]
+  taxonomyTerm = ["HTML"] # tags/atom.xml
+  page = ["HTML", "JF2Post"]
+
+# https://gohugo.io/getting-started/configuration/#configure-file-caches
+[caches]
+  [caches.getjson]
+    dir = ":cacheDir/:project"
+    maxAge = "1m"
+  [caches.getcsv]
+    dir = ":cacheDir/:project"
+    maxAge = "1m"
+
+# Configure minify - Hugo v0.68.0+
+# https://gohugo.io/getting-started/configuration/#configure-minify
+[minify]
+  # disableCSS = false                    # default = false
+  # disableHTML = false                   # default = false
+  # disableJS = false                     # default = false
+  # disableJSON = false                   # default = false
+  # disableSVG = false                    # default = false
+  # disableXML = false                    # default = false
+  minifyOutput = true                     # default = false
+  [minify.tdewolff]
+    # [minify.tdewolff.css]
+    #   keepCSS2 = true                   # default = true
+    #   precision = 0                     # default = 0
+    [minify.tdewolff.html]
+      # keepComments = false              # default = false
+      # keepConditionalComments = true    # default = true
+      # keepDefaultAttrVals = true        # default = true
+      # keepDocumentTags = true           # default = true
+      keepEndTags = false                 # default = true
+      # keepQuotes = false                # default = false
+      # keepWhitespace = true             # default = true
+    # [minify.tdewolff.js]
+    #   keepVarNames = false                # default = false
+    #   precision = 0                       # default = 0
+    # [minify.tdewolff.json]
+    #   keepNumbers = false                 # default = false
+    #   precision = 0                       # default = 0
+    # [minify.tdewolff.svg]
+    #   precision = 0                       # default = 0
+    # [minify.tdewolff.xml]
+    #   keepWhitespace = false              # default = false
+
+[Params]
+  # https://gohugo.io/functions/where/#portable-where-filters
+  mainSections = ["posts", "notes"]
+  tagline = "Physics, Mathematics, and Computer Science"
+  description = "Physics, Mathematics, and Computer Science"
+
+  # images = ["android-chrome-256x256.png"] # array of image paths relative to <SITE_PROJ>/assets/ dir
+
+  favicons = false
+
+  feedSections = ["posts", "notes"]
+
+  html5_validator = false
+
+  cache_busting = true
+  # cache_busting_debug = true
+  # cache_busting_debug = false
+
+  [Params.source]
+    # url = "https://gitlab.com/kaushalmodi/kaushalmodi.gitlab.io"
+    org_dir = "content-org"
+    md_dir = "content"
+    ox_hugo = true
+
+  [Params.social]
+    use_icons = true
+
+    [[Params.social.service]]
+      name = "Github"
+      link = "https://github.com/thelazyuniverse/"
+      relme = true
+    
+# See var-naming-rules.md for rules when naming keys (variables) and table names
+# in this config!

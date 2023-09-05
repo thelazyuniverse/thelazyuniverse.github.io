@@ -1,0 +1,11 @@
+# TheLazyUniverse Setup file 
+
+#+hugo_base_dir: ../
+
+#+seq_todo: TODO DRAFT DONE(!)
+#+property: header-args :eval never-export
+#+options: toc:3 creator:t d:t
+#+hugo_weight: auto
+#+hugo_auto_set_lastmod: t
+#+author: Rajes Kommu
+#+hugo_front_matter_format: yaml

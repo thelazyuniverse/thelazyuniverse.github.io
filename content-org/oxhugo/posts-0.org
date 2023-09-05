@@ -1,0 +1,65 @@
+#+hugo_base_dir: ../../
+#+setupfile: ../tlu-setup.org
+
+* DONE About the =The Lazy Universe= Blog                        :@oxhugo:blog:
+:PROPERTIES:
+:EXPORT_FILE_NAME: setting-up-oxhugo-blog
+:EXPORT_DATE: [2023-09-05 Tue]
+:EXPORT_HUGO_SECTION: posts
+:END:
+
+Mostly focused on Physics, Maths, and Computer Science topics. Notes and solutions to problems from Physics and Maths. Some Category
+Theory stuff, Computational Physics simulations, etc.
+
+* DONE How to setup the =The Lazy Universe= blog.                :@oxhugo:blog:
+:PROPERTIES:
+:EXPORT_FILE_NAME: note-about-blogging
+:export_date: [2023-09-05 Tue]
+:export_hugo_section: notes
+:END:
+
+** Steps
+- These steps work only for a new site! =thelazyuniverse.github.io= should not exist prior to the sequence of steps described here.
+*** Site and Module Initialization
+- Initialize the site as Hugo module
+   #+BEGIN_SRC shell
+     hugo new site thelazyuniverse.github.io
+     cd thelazyuniverse.github.io
+     git init .
+     hugo mod init thelazyuniverse.github.io
+   #+END_SRC
+*** Adding the Theme module
+- Add the theme as a Module
+   #+BEGIN_SRC shell
+     hugo mod get gitlab.com/kaushalmodi/hugo-theme-refined
+   #+END_SRC
+*** Site Configuration
+- Edit the =hugo.toml= file
+   #+BEGIN_SRC toml
+     [module]
+       [[module.imports]]
+         path = "gitlab.com/kaushalmodi/hugo-theme-refined"
+   #+END_SRC
+
+- Complete the rest of the =hugo.toml= configuration file editing
+
+*** Content Creation
+- Create a ~content-org~ folder
+- Create the ~cae-setup.org~ in the ~content-org~ folder
+- Create the ~oxhugo~ folder in the ~content-org~ folder
+   - This folder will have all the posts related to =@oxhugo= category in one or more
+     files. The first file in will be called =posts-0.org=. If and when this file
+     gets too big, start the =post-1.org=, then =posts-2.org=, and so on.
+- Create the ~images~ folder under the ~oxhugo~ folder
+- Create the ~posts-0.org~ file
+   - Export the contents of this file
+- Create a folder (with the =images= sub-folder) for each category. Inside the category
+  folder, create =org= files following the =posts-N.org= convention, with N=0 \cdots 
+
+*** Test the site locally
+- =C-c C-e H A= to export the content defined in the =posts-0.org= file.
+- Run =hugo server -D= and verify everything looks correct.
+- Change status of posts from =DRAFT= to =DONE=
+- Follow the steps listed at [[https://gohugo.io/hosting-and-deployment/hosting-on-github/#procedure][Hosting on GitHub]]
+- Visit [[https://thelazyuniverse.github.io][TheLazyUniverse]] to verify the initial post looks ok.
+- The blog is now setup!
